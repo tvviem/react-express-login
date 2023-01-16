@@ -6,7 +6,8 @@
     - react-hot-toast: Smoking hot React Notifications. Lightweight, customizable and beautiful by default.
     - formik: Build forms in React, without the tears. Special: init fields, valid fields
   - axios: to make API requests
-
+  - zustand: store status user
+  
 ***
 
 # Server technologies

@@ -10,11 +10,14 @@ import Recover from './components/Recover';
 import Reset from './components/Reset';
 import PageNotFound from './components/PageNotFound';
 
+/** Auth middleware */
+import { AuthorizeUser, ProtectRoute } from './middleware/auth';
+
 // root routes
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Username></Username>
+    element: <Username />
   },
   {
     path: 'register',
@@ -22,11 +25,19 @@ const router = createBrowserRouter([
   },
   {
     path: 'password',
-    element: <Password></Password>
+    element: (
+      <ProtectRoute>
+        <Password />
+      </ProtectRoute>
+    )
   },
   {
     path: 'profile',
-    element: <Profile></Profile>
+    element: (
+      <AuthorizeUser>
+        <Profile />
+      </AuthorizeUser>
+    )
   },
   {
     path: 'recover',

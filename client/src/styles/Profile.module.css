@@ -3,6 +3,7 @@
 .profile_img {
 }
 .textbox {
+  @apply flex-grow mx-2;
 }
 .btn {
   @apply w-1/3;

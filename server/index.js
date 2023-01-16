@@ -7,7 +7,14 @@ import router from './router/route.js';
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+  origin: 'http://localhost:5173',
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(morgan('tiny'));
 app.disable('x-power-by');
 

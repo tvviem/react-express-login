@@ -54,7 +54,7 @@ export const registerMail = async (req, res) => {
     .sendMail(message)
     .then(() => {
       return res
-        .status(200)
+        .status(201)
         .send({ msg: 'You should recieve an email from us.' });
     })
     .catch((error) => res.status(500).send({ error }));

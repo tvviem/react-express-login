@@ -181,12 +181,12 @@ export async function updateUser(req, res) {
 
 /** GET: http://localhost:8080/api/generateOTP */
 export async function generateOTP(req, res) {
-  req.app.locals.OTP = await otpGenerator.generate(6, {
+  req.app.locals.OTP = otpGenerator.generate(6, {
     lowerCaseAlphabets: false,
     upperCaseAlphabets: false,
     specialChars: false
   });
-  res.status(201).send({ code: req.app.locals.OTP });
+  return res.status(201).send({ code: req.app.locals.OTP });
 }
 
 /** GET: http://localhost:8080/api/verifyOTP */
@@ -204,16 +204,16 @@ export async function verifyOTP(req, res) {
 // successfully redirect user when OTP is valid
 /** GET: http://localhost:8080/api/createResetSession */
 export async function createResetSession(req, res) {
-  if (req.app.locals.resetSession) {
-    req.app.locals.resetSession = false; // only access this route only once
-    return res.status(201).send({ msg: 'access granted!' });
-  }
-  return res.status(440).send({ error: 'Session expired!' });
-
   // if (req.app.locals.resetSession) {
-  //   return res.status(201).send({ flag: req.app.locals.resetSession });
+  //   req.app.locals.resetSession = false; // only access this route only once
+  //   return res.status(201).send({ msg: 'access granted!' });
   // }
   // return res.status(440).send({ error: 'Session expired!' });
+
+  if (req.app.locals.resetSession) {
+    return res.status(201).send({ flag: req.app.locals.resetSession });
+  }
+  return res.status(440).send({ error: 'Session expired!' });
 }
 
 // update the password when we have valid session
